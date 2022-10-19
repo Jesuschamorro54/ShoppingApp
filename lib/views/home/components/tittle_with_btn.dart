@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:parcial2/constants.dart';
 
 class TittleWithBtn extends StatelessWidget {
+
+  /// ## TittleWithBtn()
+  /// Widget que contiene el titulo y el botón de una sección de la app
+  /// ___
+  /// @param `title: String` Titulo de la sección
+  /// 
+  /// @param `press: Funtion` Funcion que ejecutará el botón
+  /// 
+  /// @returns Padding que contiene un Row con los elementos
+
   const TittleWithBtn({
     Key? key, 
     required this.title, 
@@ -14,13 +24,18 @@ class TittleWithBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
+
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: Row(
+
         children: [
+          
           TittleWithCustomUnderline(text: title,),
           const Spacer(),
           TextButton(
+
             style: TextButton.styleFrom(
               primary: Colors.white,
               backgroundColor: kSecondaryColor,
@@ -34,11 +49,17 @@ class TittleWithBtn extends StatelessWidget {
         ],
       ),
     );
+
   }
 }
 
 class TittleWithCustomUnderline extends StatelessWidget {
   
+  /// ## TittleWithCustomUnderline()
+  /// ___
+  /// @param `text: String`
+  /// 
+  /// @returns SizedBox que el texto
   const TittleWithCustomUnderline({
     Key? key, 
     required this.text
@@ -48,17 +69,20 @@ class TittleWithCustomUnderline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
+
       height: 24,
       child: Stack(
+
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(left: kDefaultPadding/4),
+            padding: const EdgeInsets.only(left: kDefaultPadding/4),
             child: Text(
               text,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
+
           Positioned(
             bottom: 0,
             left: 0,
@@ -66,12 +90,11 @@ class TittleWithCustomUnderline extends StatelessWidget {
             child: Container(
               height: 7,
               margin: const EdgeInsets.only(right: kDefaultPadding/4),
-              // color: kPrimaryColor.withOpacity(0.2),
             ),
           )
         ],
-
       ),
     );
+
   }
 }

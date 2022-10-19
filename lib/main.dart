@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor)
       ),
+      // Custom Home Screen
       home: const HomeScreen(),
     );
   }

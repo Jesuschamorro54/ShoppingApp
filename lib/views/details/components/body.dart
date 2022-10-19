@@ -6,6 +6,8 @@ import 'product_detail.dart';
 
 class Body extends StatelessWidget {
   
+  /// ## Body()
+  /// Stateful Widget el cual devuelve un SingleChildScrollView que contiene el cuerpo de la vista
   const Body({ 
     Key? key,
     required this.data
@@ -20,9 +22,14 @@ class Body extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
+
       child: Column(
         children: [
+
+          // Imagen Ampliada
           PreviewImage(image: data.imageUrl),
+
+          // Detalle del producto
           ProductDetail(
             title: data.title, 
             category: data.category, 
@@ -30,9 +37,12 @@ class Body extends StatelessWidget {
             largeTitle: data.large_title, 
             largeCategory: data.large_category,
           ),
+
           const SizedBox(height: kDefaultPadding),
           Row(
             children: [
+
+              // Boton de Comprar
               SizedBox(
                 width: size.width / 2,
                 height: 84,
@@ -58,17 +68,18 @@ class Body extends StatelessWidget {
                 ),
                 
               ),
+
+              // Botón de descripcion
               SizedBox(
                 width: size.width / 2,
                 height: 84,
                 child: TextButton(
                   onPressed: (){},
-                  child: Text("Description"),
+                  child: const Text("Description"),
                 )
               )
             ],
           )
-
         ],
       ),
     );

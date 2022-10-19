@@ -10,11 +10,13 @@ import 'tittle_with_btn.dart';
 
 
 class MyBody extends StatefulWidget{
-  const MyBody({Key? key}): super(key: key);
 
+  /// Stateful Widget el cual devuelve un Single ScrollView que contiene el cuerpo de la vista
+  const MyBody({Key? key}): super(key: key);
 
   @override
   State<MyBody> createState() => _BodyState();
+
 }
 
 class _BodyState extends State<MyBody> {
@@ -28,7 +30,6 @@ class _BodyState extends State<MyBody> {
     final dataProvider = ProductProvider();
     productList = dataProvider.getProducts('products');
 
-
   }
 
   @override
@@ -36,41 +37,48 @@ class _BodyState extends State<MyBody> {
 
     Size size = MediaQuery.of(context).size;
 
-    // Se pone un scroll para dispositivos pequeños
+    // Se devuelve un ScrollView para dispositivos más pequeños
     return SingleChildScrollView(
-      child: Column(
+
+      child: Column (
         children: <Widget>[
 
           // HEADER DEL HOME
           HearderWithSearchBox(size: size),
 
-          // SECCIÓN DE PRODUCTOS RECOMENDADOS
+          // PRODUCTOS RECOMENDADOS
           TittleWithBtn(title: "Productos Recomendados", press: () {}),
 
+          // Carousel de productos
           FutureBuilder<Object>(
+
             future: productList,
             builder: (context, snapshot){
+              
               if (snapshot.hasData){
                 
                 return SingleChildScrollView(
-                  
                   child: CustomCarousel(snapshot.data as List<Product>, context)
                 );
 
               }else{
+
                 print(snapshot.error);
-                // ignore: prefer_const_constructors
-                return Center(
-                  child: const CircularProgressIndicator(),
+                return const Center(
+                  child: CircularProgressIndicator(),
                 );
+
               }
             }
+
           ),
           
+          // CATEGORIAS
           CategoryList()
 
         ],
       ),
+
     );
   }
 }

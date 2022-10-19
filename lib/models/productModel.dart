@@ -2,12 +2,27 @@ import 'package:characters/characters.dart';
 
 // ignore_for_file: file_names
 
-// GENERADOR DE LA DATA
+
 class ProductDataGenerate{
 
   // Array donde voy a guardar la info de los pkemones {name, imgUrl}
   List<Product> items = [];
 
+  /// ## class ProductDataGenerate
+  /// 
+  /// ```
+  /// List<Product> items = [];
+  /// 
+  /// setItems(List json){
+  ///    
+  ///    if(json == null) return {};
+  ///    
+  ///    for( var item in json){
+  ///      final product = Product.fromJsonMap(item);
+  ///      items.add(product);      
+  ///    } 
+  ///  }
+  /// ```
   ProductDataGenerate();
 
 
@@ -22,8 +37,22 @@ class ProductDataGenerate{
     } 
   }
 }
-// MODELO
+
+/// ## class Product
+/// 
+/// ```
+/// class Product(
+///    required String title,
+///    required String large_title,
+///    required String imageUrl,
+///    required String category,
+///    required String large_category,
+///    required double price
+///  );
+/// ```
+///
 class Product {
+  
   late String title;
   late String large_title;
   late String imageUrl;
@@ -31,8 +60,16 @@ class Product {
   late String large_category;
   late double price;
 
-  Product();
+  Product(
+    String title,
+    String large_title,
+    String imageUrl,
+    String category,
+    String large_category,
+    double price
+  );
 
+  
   Product.fromJsonMap(Map<String, dynamic> json){
     large_title = json["title"];
     title = "${json["title"].toString().characters.take(7).toLowerCase()}..." ;

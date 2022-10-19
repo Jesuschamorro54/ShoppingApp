@@ -39,12 +39,13 @@ class PreviewImage extends StatelessWidget {
                           onPressed: () => Navigator.pop(context), 
                         ),
                       ),
-                      Spacer(),
+
+                      const Spacer(),
     
-                      IconCard(icon: Icons.sunny),
-                      IconCard(icon: Icons.water_drop),
-                      IconCard(icon: Icons.sunny),
-                      IconCard(icon: Icons.sunny)
+                      const IconCard(icon: Icons.favorite),
+                      const IconCard(icon: Icons.thumb_up),
+                      const IconCard(icon: Icons.visibility),
+                      const IconCard(icon: Icons.recommend),
     
                     ],
                 ),

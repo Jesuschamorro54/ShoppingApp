@@ -25,7 +25,7 @@ class ProductDetail extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: size.width * 0.6,
             child: Flexible(
               child: RichText(
@@ -51,7 +51,8 @@ class ProductDetail extends StatelessWidget {
               ),
             ),
           ),
-          Spacer(),
+          
+          const Spacer(),
 
           Text(
             "\$$price USD",

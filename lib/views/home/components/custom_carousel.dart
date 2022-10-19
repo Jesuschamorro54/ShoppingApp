@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:parcial2/models/productModel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import '../../../constants.dart';
 import '../../details/details_screen.dart';
 import 'product_card.dart';
 
+/// ## CustomCarousel()
+/// ___
+/// @param `data: List<Product>`
+/// 
+/// @returns `CarouselSlider` que contiene Widgets de tipo `ProductCard`
 CarouselSlider CustomCarousel(List<Product> data, context){
-
-  List<Widget> products = [];
 
   return CarouselSlider(
     
@@ -16,24 +18,31 @@ CarouselSlider CustomCarousel(List<Product> data, context){
       height: 330,
       viewportFraction: 0.5,
     ),
+
     items: data.map((product) {
-    
-    return Builder( builder: (BuildContext context) {
-        return ProductCard(
-          title: product.title,
-          category: product.category,
-          image: product.imageUrl,
-          price: product.price,
-          marginOff: false,
-          press: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsScreen(data: product)));
-          },
-        );
-      },
-    );
-  }).toList(growable: true),);
+      return Builder( builder: (BuildContext context) {
+          return ProductCard(
+            title: product.title,
+            category: product.category,
+            image: product.imageUrl,
+            price: product.price,
+            marginOff: false,
+            press: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsScreen(data: product)));
+            },
+          );
+        },
+      );
+    }
+  ).toList(growable: true),);
 }
 
+
+/// ## CustomListView()
+/// ___
+/// @param `data: List<Product>`
+/// 
+/// @returns `products: List<Widget>` un array de Widgets de tipo `ProductCard`
 List<Widget> CustomListView(List<Product> data, context){
   List<Widget> products = [];
   for(var product in data){
@@ -54,12 +63,20 @@ List<Widget> CustomListView(List<Product> data, context){
   return products;
 }
 
+/// ## GenerateFutureData()
+/// ___
+/// @param `data: List<Product>`
+/// 
+/// @returns `FutureBuilder` construye un SolverGrid con Widgets de tipo `ProductCard` con la data enviada por parametro
+/// 
+// ignore: non_constant_identifier_names
 Widget GenerateFutureData(data){
-  return FutureBuilder( //futurebuilder para cargar las imagenes al grid
+  return FutureBuilder(
     future: data,
     builder: (context, snapshot){
+
       if(snapshot.hasData){
-        return SliverGrid( //SliverGrid coloca cada imagen en una posicion, funciona como un grid solo que este va dentro del Customscrollview
+        return SliverGrid(
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 200.0,
             mainAxisSpacing: 0.5,
@@ -70,27 +87,13 @@ Widget GenerateFutureData(data){
               (BuildContext context, int index) {
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                // alignment: Alignment.center,
                 child: CustomListView(snapshot.data as List<Product>,context)[index],
-                // decoration: BoxDecoration(
-                //   color: Colors.white,
-                //   boxShadow: [
-                //     BoxShadow(
-                //       offset: Offset(0, 10),
-                //       blurRadius: 50,
-                //       color: kPrimaryColor.withOpacity(0.5) ,
-                //     )
-                //   ],
-                //   borderRadius: const BorderRadius.only(
-                //     bottomLeft: Radius.circular(10),
-                //     bottomRight: Radius.circular(10),
-                //   )
-                // ),
               );
             },
             childCount:CustomListView(snapshot.data as List<Product>,context).length,
           ),
         );
+        
       }else{
         return SliverGrid(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

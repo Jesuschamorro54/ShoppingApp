@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:parcial2/constants.dart';
 
 class HearderWithSearchBox extends StatelessWidget {
+
+  /// Es un Widget que extiende de `Container` que contiene el header de la app
+  /// ___
+  /// @param `size` de tipo `Size`
   const HearderWithSearchBox({
     Key? key,
     required this.size,
@@ -11,18 +15,25 @@ class HearderWithSearchBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+
+    return Container (
+      
       margin: const EdgeInsets.only(bottom: kDefaultPadding * 2.5),
       height: size.height * 0.2,
-      child: Stack(
+      child: Stack (
+
         children: <Widget> [
+
           Container(
+
             padding: const EdgeInsets.only(
               left: kDefaultPadding, 
               right: kDefaultPadding,
               bottom: 36 + kDefaultPadding
             ),
+
             height: size.height * 0.2 -27,
+
             decoration: const BoxDecoration(
               color: kPrimaryColor,
               borderRadius: BorderRadius.only(
@@ -31,22 +42,23 @@ class HearderWithSearchBox extends StatelessWidget {
               )
             ),
 
-            // Nombre de la app con el logo
-            child: Row(
+            // Contenedor del nombre de la app y el logo
+            child: Row (
+
               children: [
-                Text(
-                  "ShopingApp", 
+                Text ( "ShopingApp", 
                   style: Theme.of(context).textTheme.headline5?.copyWith(
                     color: Colors.white, fontWeight: FontWeight.bold
                   )
                 ),
-                Spacer(),
+                const Spacer(),
                 Image.asset("assets/images/logo.png")
               ],
+
             ),
           ),
 
-          // Buscardor
+          // Buscador
           Positioned(
             bottom: 0,
             left: 0,
@@ -54,21 +66,23 @@ class HearderWithSearchBox extends StatelessWidget {
 
             child: Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-              padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              margin: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
               height: 54.0,
+
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [ 
                   BoxShadow(
-                    offset: Offset(0, 10),
+                    offset: const Offset(0, 10),
                     blurRadius: 50,
                     color: kPrimaryColor.withOpacity(0.23),
                   )
                 ]
               ),
-              child: TextField(
+
+              child: TextField (
                 // Accion del search
                 onChanged: (value){},
                 decoration: InputDecoration(
@@ -87,5 +101,6 @@ class HearderWithSearchBox extends StatelessWidget {
         ],
       )
     );
+
   }
 }
